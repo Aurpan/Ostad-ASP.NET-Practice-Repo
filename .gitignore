@@ -1,0 +1,71 @@
+# .NET Core build artifacts
+bin/
+obj/
+out/
+artifacts/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+
+# Build results
+*.dll
+*.exe
+*.app
+*.appx
+*.log
+*.cache
+*.pdb
+*.mdb
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+.nuget/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Other caches
+*.pidb
+*.sln.docstates
+
+# User-specific files
+*.user
+*.swp
+*.DS_Store
+*.sln.iml
+
+# Test results
+TestResult*/
+TestResults/
+*.coverage
+*.coveragexml
+
+# Publish output
+publish/
+
+# Logs
+*.log
+
+# Tye
+.tye/
+
+# Backup and temporary files
+*.bak
+*.tmp
+*.temp
