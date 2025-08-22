@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
+﻿
 
 namespace LearningCSharp
 {
@@ -7,6 +6,7 @@ namespace LearningCSharp
     {
         static void Main(string[] args)
         {
+            #region previous code
             // byte, short,int, long => whole numbers
             int firstNumber = 42;
             byte age = 30;
@@ -97,8 +97,70 @@ namespace LearningCSharp
                 sum = sum + number;
             }
 
-            string input = Console.ReadLine();
-            Console.WriteLine(input);
+            //string input = Console.ReadLine();
+            //Console.WriteLine(input);
+
+
+            // Exception handling => try-catch-finally
+
+            try
+            {
+                Console.WriteLine(numbers[5]);
+                // check if email exists
+                // if yes - delete user and insert
+                // if no - insert
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine("Index out of range: " + e.Message);
+                // write to log
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("Null reference: " + e.Message);
+                // write to log
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // write to log
+            }
+            finally
+            {
+                // must be executed all time
+                // used for reverting data
+            }
+
+            int salary = 10000;
+            int bonusPercentage = 10;
+            CalculateBonus(salary, bonusPercentage);
+            #endregion
+
+            // objects => copy of a class
+            Employee manager = new Employee();
+            Employee srManager = new Employee();
+            //Employee SalesPErson = new Employee();
+
+            manager.FirstName = "Aurgha";
+            manager.LastName = "Dash";
+            manager.EmployeeId = 1;
+
+            Console.WriteLine(srManager.EmployeeId);
+
+            Manager manager1 = new Manager();
+            manager1.FirstName = "Aurgha";
+        }
+
+
+        // Methods => Function
+        // access modifier -> return type -> method name -> parameters
+        public static void CalculateBonus(int salary, int bonusPercentage) // method signature
+        {
+            // method body starts from here
+            // logic to calculate bonus
+            int bonus = (salary * bonusPercentage) / 100;
+            Console.WriteLine("My bonus is: " + bonus);
+            //return bonus;
         }
     }
 }
