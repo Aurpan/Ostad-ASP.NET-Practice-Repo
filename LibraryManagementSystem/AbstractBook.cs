@@ -1,36 +1,30 @@
 ﻿namespace LibraryManagementSystem
 {
-    internal class Book : AbstractBook, IBook
+    internal abstract class AbstractBook // is a contract just like interface
     {
         public string Title { get; set; }
         public string Author { get; set; }
         public string Category { get; set; }
         public DateTime CollectionDate { get; set; }
-        private int AvailableBooks { get; set; } 
+        private int AvailableBooks { get; set; }
         //public event Action OnBookBorrowed(int x, int y);
 
-        public Book(DateTime collectionDate, int count = 5)
+        public AbstractBook(DateTime collectionDate, int count = 5)
         {
             CollectionDate = collectionDate;
             AvailableBooks = count;
         }
 
-        public Book()
+        public AbstractBook()
         {
-            
+
         }
 
-        //public void Borrow(string collectionDate = "aurgha")
+        public abstract void Borrow(string collectionDate = "aurgha");
         //{
         //    Console.WriteLine("Borrowing the book!");
         //    AvailableBooks--;
         //}
-
-        public override void Borrow(string collectionDate = "aurgha")
-        {
-            Console.WriteLine("Borrowing the book!");
-            AvailableBooks--;
-        }
 
         public void GetBookCount()
         {
@@ -56,12 +50,9 @@
             Console.WriteLine("Available Book by category");
         }
 
-
         public void GetBookCount(int x)
         {
             Console.WriteLine("Available Book by category");
         }
-
-        
     }
 }

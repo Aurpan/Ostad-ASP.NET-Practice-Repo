@@ -94,8 +94,12 @@ namespace LibraryManagementSystem
 
 
             // Abstraction => hiding complexity
-            IBook book = new Book(); // can't create object of interface
-            book.Borrow("");
+            //IBook book = new IBook(); // can't create object of interface
+            //book.Borrow("");
+
+
+            // Abstract class example
+            AbstractBook book = new AbstractBook();
         }
     }
 }
