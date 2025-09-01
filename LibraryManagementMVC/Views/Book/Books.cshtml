@@ -1,0 +1,36 @@
+﻿@model List<BookViewModel>
+
+
+<div class="text-center">
+    <h1 class="display-4">This is Book Page</h1>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (BookViewModel book in Model)
+                {
+                    @foreach(MemberViewModel member in book.Members)
+                    {
+                        
+                    }
+
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Genre</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
