@@ -7,7 +7,13 @@
         public void ShowProtectedExample(double amount)
         {
             GuestMember guest = new GuestMember();
-            guest.CancelToken();
+            //guest.CancelToken();
+
+        }
+
+        public void Register()
+        {
+            Console.WriteLine("Registering a guest member!");
         }
     }
 }

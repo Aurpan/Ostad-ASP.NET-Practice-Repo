@@ -10,17 +10,28 @@ namespace LibraryManagementSystem
         public DateTime RegisterDate { get; set; }
         public string Email { get; set; }
         public MemberTypeEnum MemberType { get; set; }
-        private int Age { get; set; } // only accessible within this class
+        public static int MemberCount { get; set; } // belongs to class not object
+        public static List<Book> BorrowedBook { get; set; }
 
-        public void Register()
+        //private int Age { get; set; } // only accessible within this class
+
+        public virtual void Register()
         {
-            Console.WriteLine("Registering the member!");
+            Console.WriteLine("Registering a member!");
+
+            Book book = new Book();
+            book.GetBookCount();
         }
 
-        protected void CancelToken()
-        {
-            Console.WriteLine("Cancel token money!");
-        }
+        //protected void CancelToken()
+        //{
+        //    Console.WriteLine("Cancel token money!");
+        //}
+
+        //public static void ShowCount()
+        //{
+        //    Console.WriteLine("Total Members: " + MemberCount);
+        //}
 
     }
 }

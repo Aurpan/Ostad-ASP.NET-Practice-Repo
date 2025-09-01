@@ -5,7 +5,12 @@
         public void ShowProtectedExample(double amount)
         {
             TeacherMember guest = new TeacherMember();
-            guest.CancelToken();
+            //guest.CancelToken();
+        }
+
+        public override void Register()
+        {
+            Console.WriteLine("Registering a teacher member!");
         }
     }
 }
