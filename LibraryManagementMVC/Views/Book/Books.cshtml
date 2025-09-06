@@ -12,22 +12,30 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Genre</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach (BookViewModel book in Model)
                 {
-                    @foreach(MemberViewModel member in book.Members)
-                    {
-                        
-                    }
-
                     <tr>
                         <td>@book.Id</td>
                         <td>@book.Title</td>
                         <td>@book.Author</td>
                         <td>@book.Genre</td>
+                        <td>
+                            <a class="nav-link text-dark"
+                               asp-controller="Book" asp-action="Edit"
+                               asp-route-bookId="@book.Id" asp-route-bookTitle="@book.Title">
+                                Edit
+                            </a>
+                            <a class="nav-link text-dark"
+                               asp-controller="Book" asp-action="Delete"
+                               asp-route-bookId="@book.Id" asp-route-bookTitle="@book.Title">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
