@@ -1,3 +1,6 @@
+using LibraryManagementMVC.Interfaces;
+using LibraryManagementMVC.Services;
+
 namespace LibraryManagementMVC
 {
     public class Program
@@ -5,6 +8,11 @@ namespace LibraryManagementMVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Dependency Injection (DI) container
+            builder.Services.AddScoped<IBookService, OldBookService>();
+            builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<BookService, BookService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

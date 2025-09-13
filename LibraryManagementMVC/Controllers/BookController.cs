@@ -1,4 +1,6 @@
-﻿using LibraryManagementMVC.Models;
+﻿using LibraryManagementMVC.Interfaces;
+using LibraryManagementMVC.Models;
+using LibraryManagementMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagementMVC.Controllers
@@ -7,15 +9,19 @@ namespace LibraryManagementMVC.Controllers
     {
         //private static List<BookViewModel> _books = new List<BookViewModel>(); // not the best practice
         private static List<BookViewModel> _books;
+        private IBookService _bookService; // dependency
+        //private BookService _newBookService; 
+        //private OldBookService _oldbookService; 
 
         // constructor
-        public BookController()
+        public BookController(BookService bookServices) // dependency injection => DI
         {
             if (_books == null)
             {
                 _books = new List<BookViewModel>();
-                CreateDummyBookList();
-            }      
+                //CreateDummyBookList();
+            }
+            //_bookService = bookService; // dependency resolving / initialization
         }
 
 
@@ -24,9 +30,17 @@ namespace LibraryManagementMVC.Controllers
         public IActionResult Books() // Action Methods
         {
             //List<BookViewModel> books = CreateDummyBookList(); // this is not the duty of a action method
+            // Service call
 
+            //BookService bookService = new BookService();
+            OldBookService bookService = new OldBookService();
+            var books = bookService.GetAllBooks();
+
+            // _books = convert List<Book> to List<BookViewModel>
             return View(_books); // path => View/[Controller_Name]/[action_method_name]
         }
+
+
 
         // Edit book 
         //public IActionResult Edit(int bookId, string bookTitle)
