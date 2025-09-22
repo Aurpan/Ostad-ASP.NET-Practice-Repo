@@ -1,7 +1,7 @@
 ﻿using AspDotNetAdvanced.Models;
 using AspDotNetAdvanced.Utilities;
 
-namespace AspDotNetAdvanced
+namespace AspDotNetAdvanced.Services
 {
     public class BookService
     {
@@ -48,27 +48,27 @@ namespace AspDotNetAdvanced
         //    var authors = books.Select(book => book.Author);
         //    return string.Join(", ", authors);
         //}
-        public string GetCommaSeparatedValue(Func<Book, string> colCondition)
-        {
-            List<string> strValues = new List<string>();
-            foreach (var book in books)
-            {
-                var value = colCondition(book);
-                if (value != null)
-                {
-                    strValues.Add(value.ToString());
-                }
-            }
-
-            Console.WriteLine(string.Join(", ", strValues));
-
-            return string.Join(", ", strValues);
-        }
-
         //public string GetCommaSeparatedValue(Func<Book, string> colCondition)
         //{
-        //    return books.GetCommaSeparatedValueExtension(colCondition);
+        //    List<string> strValues = new List<string>();
+        //    foreach (var book in books)
+        //    {
+        //        var value = colCondition(book);
+        //        if (value != null)
+        //        {
+        //            strValues.Add(value.ToString());
+        //        }
+        //    }
+
+        //    Console.WriteLine(string.Join(", ", strValues));
+
+        //    return string.Join(", ", strValues);
         //}
+
+        public string GetCommaSeparatedValue(Func<Book, string> colCondition)
+        {
+            return books.GetCommaSeparatedValue(colCondition);
+        }
 
         public decimal CalculateSum(List<decimal> nums)
         {
