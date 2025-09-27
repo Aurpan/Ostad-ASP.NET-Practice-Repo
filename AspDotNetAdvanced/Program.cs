@@ -1,4 +1,5 @@
-﻿using AspDotNetAdvanced.Models;
+﻿using AspDotNetAdvanced.CustomExceptions;
+using AspDotNetAdvanced.Models;
 using AspDotNetAdvanced.Services;
 using AspDotNetAdvanced.Utilities;
 using System.ComponentModel.DataAnnotations;
@@ -56,15 +57,49 @@ namespace AspDotNetAdvanced
             //var books = new List<Book>();
             //books.GetCommaSeparatedValue(book => book.Title);
 
-            Employee emp = new Employee();
-            emp.Id = 1;
-            emp.Name = "Amir";
-            emp.Salary = 700000;
+            //Employee emp = new Employee();
+            //emp.Id = 1;
+            //emp.Name = "Amir";
+            //emp.Salary = 700000;
 
-            var context = new ValidationContext(emp);
-            var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(emp, context, results, true);
+            //var context = new ValidationContext(emp);
+            //var results = new List<ValidationResult>();
+            //bool isValid = Validator.TryValidateObject(emp, context, results, true);
 
+
+
+
+            // Multi layer Exception Handling
+
+            BookService bookService = new BookService();
+            var selectedBook = new Book();
+
+            // adding new book with id 18
+            // First check if 18 exists
+            try
+            {
+                selectedBook = bookService.GetBookById(18);
+            }
+            catch (MyCustomException ex)
+            {
+                //Console.WriteLine("Custom Exception Caught!");
+                Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Checking Database for highest ID");
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine("Changing Directory!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("This is a generic exception!");
+            }
+
+
+            // build custom exception
         }
     }
 }

@@ -36,7 +36,7 @@ namespace LibraryManagementMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Book}/{action=Books}");
+                pattern: "{controller=Home}/{action=Index}");
 
             app.Run();
         }

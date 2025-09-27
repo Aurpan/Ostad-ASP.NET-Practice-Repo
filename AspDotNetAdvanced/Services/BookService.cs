@@ -1,4 +1,5 @@
-﻿using AspDotNetAdvanced.Models;
+﻿using AspDotNetAdvanced.CustomExceptions;
+using AspDotNetAdvanced.Models;
 using AspDotNetAdvanced.Utilities;
 
 namespace AspDotNetAdvanced.Services
@@ -24,6 +25,18 @@ namespace AspDotNetAdvanced.Services
             new Book { Id = 15, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Price = 9.99m, PublishedDate = new DateTime(1925, 4, 10), Genre = "Classic" }
         };
 
+        public Book GetBookById(int bookId)
+        {
+            // fetch data from database => books
+            var selectedBook = books.Find(b => b.Id == bookId);
+
+            if (selectedBook == null)
+            {
+                throw new MyCustomException("Baari Khaise!");
+            }
+
+            return selectedBook;
+        }
 
         public List<Book> GetBooksByPriceRange(decimal lowerRange, decimal higherRange)
         {
