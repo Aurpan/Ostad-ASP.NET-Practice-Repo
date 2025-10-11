@@ -1,0 +1,11 @@
+Authorization Filter
+Resource Filter
+Action Filter
+Result Filter
+Exception Filter
+
+Request flow:
+
+client(browser) -> Middleware pipeline -> .NET Filter pipeline -> Controller 
+
+Auth => authentication + authorization

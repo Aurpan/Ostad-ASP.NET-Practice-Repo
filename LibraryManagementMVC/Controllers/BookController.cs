@@ -2,42 +2,41 @@
 using LibraryManagementMVC.Models;
 using LibraryManagementMVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using LibraryManagementMVC.Filters;
 
 namespace LibraryManagementMVC.Controllers
 {
+    [CustomAuthFilter]
     public class BookController : Controller
     {
-        //private static List<BookViewModel> _books = new List<BookViewModel>(); // not the best practice
         private static List<BookViewModel> _books;
-        private IBookService _bookService; // dependency
-        //private BookService _newBookService; 
-        //private OldBookService _oldbookService; 
 
         // constructor
-        public BookController(BookService bookServices) // dependency injection => DI
+        public BookController(IBookService bookServices) // dependency injection => DI
         {
             if (_books == null)
             {
                 _books = new List<BookViewModel>();
-                //CreateDummyBookList();
             }
-            //_bookService = bookService; // dependency resolving / initialization
         }
-
-
 
         // fetches all books
         public IActionResult Books() // Action Methods
         {
+            Console.WriteLine("Entered Controller: Book, Action: Books");
             //List<BookViewModel> books = CreateDummyBookList(); // this is not the duty of a action method
             // Service call
 
             //BookService bookService = new BookService();
             OldBookService bookService = new OldBookService();
-            var books = bookService.GetAllBooks();
+            //var books = bookService.GetAllBooks()/*;*/
+            var book = new List<BookViewModel>
+            {
+                new BookViewModel { Id = 1, Title = "1984", Author = "George Orwell", Genre = "Dystopian" },
+            };
 
             // _books = convert List<Book> to List<BookViewModel>
-            return View(_books); // path => View/[Controller_Name]/[action_method_name]
+            return View(book); // path => View/[Controller_Name]/[action_method_name]
         }
 
 
@@ -52,6 +51,7 @@ namespace LibraryManagementMVC.Controllers
         }
 
         [HttpPost] // attribute
+        [CustomResourceFilter]
         public IActionResult Update(BookViewModel updatedBook)
         {
             var book = _books.FirstOrDefault(b => b.Id == updatedBook.Id);
