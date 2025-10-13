@@ -1,7 +1,7 @@
-using LibraryManagementMVC.Filters;
+using LibraryManagementMVC.DbContext;
 using LibraryManagementMVC.Interfaces;
 using LibraryManagementMVC.Services;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementMVC
 {
@@ -12,20 +12,15 @@ namespace LibraryManagementMVC
             var builder = WebApplication.CreateBuilder(args);
 
             // Dependency Injection (DI) container
-            builder.Services.AddScoped<IBookService, OldBookService>();
-            builder.Services.AddScoped<IBookService, BookService>(); // standard
-            builder.Services.AddScoped<BookService, BookService>();
+            builder.Services.AddScoped<IBookService, BookService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //builder.Services.AddControllersWithViews(options =>
-            //    {
-            //        //options.Filters.Add(new Filters.CustomAuthFilter())
-            //        options.Filters.Add<CustomAuthFilter>();
-            //        options.Filters.Add<CustomResourceFilter>();
-            //    }   
-            //);
 
+            // Register EF Core DbContext
+            builder.Services.AddDbContext<LibraryDbContext>( options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
 
             var app = builder.Build();
 
