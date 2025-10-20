@@ -1,8 +1,6 @@
-﻿using LibraryManagementMVC.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using LibraryManagementMVC.Services.Interfaces;
 using LibraryManagementMVC.Models;
-using LibraryManagementMVC.Services;
-using Microsoft.AspNetCore.Mvc;
-using LibraryManagementMVC.Filters;
 
 namespace LibraryManagementMVC.Controllers
 {
@@ -25,28 +23,22 @@ namespace LibraryManagementMVC.Controllers
 
 
 
+
         // Edit book 
-        //public IActionResult Edit(int bookId, string bookTitle)
-        //public IActionResult Edit(int bookId)
-        //{
-        //    var selectedBook = _books.FirstOrDefault(b => b.Id == bookId);
+        public IActionResult Edit(int bookId)
+        {
+            var selectedBook = _bookService.GetBookById(bookId);
 
-        //    return View(selectedBook);
-        //}
+            return View(selectedBook);
+        }
 
-        //[HttpPost] // attribute
-        //[CustomResourceFilter]
-        //public IActionResult Update(BookViewModel updatedBook)
-        //{
-        //    var book = _books.FirstOrDefault(b => b.Id == updatedBook.Id);
+        [HttpPost]
+        public IActionResult Update(BookViewModel updatedBook)
+        {
+            _bookService.Update(updatedBook);
 
-        //    book.Author = updatedBook.Author;
-        //    book.Title = updatedBook.Title;
-        //    book.Genre = updatedBook.Genre;
-
-        //    return RedirectToAction("Books");
-        //    //return View("Books", _books); // bad practice
-        //}
+            return RedirectToAction("Books");
+        }
 
         //public IActionResult Delete(int bookId)
         //{

@@ -11,7 +11,7 @@
                     <th>Id</th>
                     <th>Title</th>
                     <th>Author</th>
-                    <th>Genre</th>
+                    <th>ISBN</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,8 +22,8 @@
                     <tr>
                         <td>@book.Id</td>
                         <td>@book.Title</td>
-                        <td>@book.Author</td>
-                        <td>@book.Genre</td>
+                        <td>@book.AuthorName</td>
+                        <td>@book.ISBN</td>
                         <td>
                             <a class="nav-link text-dark"
                                asp-controller="Book" asp-action="Edit"

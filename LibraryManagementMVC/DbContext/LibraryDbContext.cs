@@ -11,6 +11,17 @@ namespace LibraryManagementMVC.DbContext
             
         }
 
+
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<BorrowRecord> BorrowRecords { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Apply all configurations from the current assembly
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(LibraryDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

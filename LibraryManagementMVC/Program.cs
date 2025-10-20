@@ -1,6 +1,7 @@
 using LibraryManagementMVC.DbContext;
-using LibraryManagementMVC.Interfaces;
+using LibraryManagementMVC.Repositories.Interfaces;
 using LibraryManagementMVC.Services;
+using LibraryManagementMVC.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementMVC
@@ -13,6 +14,7 @@ namespace LibraryManagementMVC
 
             // Dependency Injection (DI) container
             builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<IBookRepository, BookRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -41,7 +43,7 @@ namespace LibraryManagementMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "{controller=Book}/{action=Books}");
 
             app.Run();
         }
