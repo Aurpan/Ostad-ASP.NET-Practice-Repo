@@ -1,0 +1,35 @@
+﻿@model List<ProductViewModel>
+
+<h1>Products</h1>
+
+<p>Here are all the Products in the Inventory.</p>
+<br />
+<a asp-action="Create" class="btn btn-success">Add Product</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prod in Model)
+        {
+            <tr>
+                <td>@prod.ProductName</td>
+                <td>@prod.ProductBrand</td>
+                <td>@prod.Price</td>
+                <td>@prod.Category</td>
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Edit" asp-route-productId="@prod.ProductId">Edit</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Delete" asp-route-productId="@prod.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+        @* <tr>Price Sum - @Model.Sum(p => p.Price)</tr> *@
+    </tbody>
+</table>

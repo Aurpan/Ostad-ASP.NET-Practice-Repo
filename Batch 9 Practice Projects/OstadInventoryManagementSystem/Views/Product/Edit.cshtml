@@ -1,0 +1,33 @@
+﻿@model ProductViewModel
+
+
+<h1>@ViewBag.PageHeader</h1>
+@* <h1>@ViewData["PageHeader"]</h1> *@
+
+<form asp-controller="Product" asp-action="Update" method="post">
+    <div class="mb-3">
+        <input asp-for="ProductId" class="form-control" hidden />
+    </div>
+    <div class="mb-3">
+        <label asp-for="ProductName" class="form-label">Product Name</label>
+        <input asp-for="ProductName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductBrand" class="form-label">Product Brand</label>
+        <input asp-for="ProductBrand" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label">Category</label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">@ViewBag.ButtonText</button>
+    <a asp-action="Products" class="btn btn-secondary">Cancel</a>
+</form>
