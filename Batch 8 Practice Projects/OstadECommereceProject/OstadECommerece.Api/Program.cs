@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using OstadECommerece.Api.Repositories.Interfaces;
 using OstadECommerece.Api.Services;
 using OstadECommerece.Api.Services.Interfaces;
-//using ProductRepository = OstadECommerece.Api.Repositories.ProductRepository;
 
 namespace OstadECommerece.Api
 {
@@ -16,6 +15,10 @@ namespace OstadECommerece.Api
 
             builder.Services.AddControllers();
 
+            // Swagger configuration
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -24,6 +27,11 @@ namespace OstadECommerece.Api
             builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
+            if (builder.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             // Configure the HTTP request pipeline.
 

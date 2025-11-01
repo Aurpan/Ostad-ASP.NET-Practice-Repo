@@ -13,9 +13,26 @@ namespace OstadECommerece.Api.Services
             _repo = repo;
         }
 
-        public IEnumerable<Product> GetAll() => _repo.GetProductsWithCategory();
+        public IEnumerable<Product> GetAll()
+        {
+            var products = _repo.GetProductsWithCategory();
 
-        public Product? GetById(int id) => _repo.GetById(id);
+            foreach (var product in products)
+            {
+                if (product.Category != null)
+                {
+                    product.Category.Products = null;
+                }
+            }
+            return products;
+        }
+
+        public Product? GetById(int id)
+        {
+            var product = _repo.GetById(id);
+
+            return product;
+        }
 
         public void Create(Product product)
         {

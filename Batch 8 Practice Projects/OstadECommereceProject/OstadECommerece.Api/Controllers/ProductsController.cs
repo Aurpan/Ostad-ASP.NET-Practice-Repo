@@ -23,9 +23,16 @@ namespace OstadECommerece.Api.Controllers
                 .GetAll()
                 .ToList();
 
-            var productsStr = System.Text.Json.JsonSerializer.Serialize(products);
+            return Ok(products);
+        }
 
-            return Ok(productsStr);
+        // GET: api/Products/getById
+        [HttpGet("getById")]
+        public IActionResult GetProducts(int productId)
+        {
+            var product = _productService.GetById(productId);
+
+            return Ok(product);
         }
 
         // POST: api/Products/add
@@ -33,6 +40,15 @@ namespace OstadECommerece.Api.Controllers
         public IActionResult AddProduct([FromBody] Product product)
         {
             _productService.Create(product);
+            return Ok();
+        }
+
+        // POST: api/Products/update
+        [HttpPost("update")]
+        public IActionResult UpdateProduct([FromBody] Product product)
+        {
+            _productService.Update(product);
+
             return Ok();
         }
     }
